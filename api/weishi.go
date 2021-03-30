@@ -22,13 +22,21 @@ func WeiShi(url string) string {
 	if len(requrl) < 10 {
 		return ""
 	}
+	defer func() string { // 用来处理异常
+		if err := recover(); err != nil { // 此处防止错误列表导致程序退出
+			return ""
+		}
+		return ""
+	}()
 	Itemid := strings.Split(requrl, "/")[3] ///share/video/6734643996347485448/?region=CN&mid=6734637731277851404&u_code=0&titleType=title&utm_source=copy_link&utm_campaign=client_share&utm_medium=android&app=aweme
+	// fmt.Println(Itemid)
+
+	// Itemid = Itemid[2]
 	// fmt.Println(res.RawResponse.Request.URL.RequestURI())
 	// reg := regexp.MustCompile(`item/(.*?)\?`) // ?号需要替
 	// Itemid := reg.FindStringSubmatch(res.RawResponse.Request.URL.RequestURI())[1]
 	// fmt.Println(Itemid)
 	// 根据ID然后获取原始视频
-
 	infourl := "https://h5.weishi.qq.com/webapp/json/weishi/WSH5GetPlayPage?feedid=" + Itemid
 	res2, err := grequests.Get(infourl, &grequests.RequestOptions{
 		Headers: map[string]string{

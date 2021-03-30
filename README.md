@@ -1,8 +1,19 @@
-# glink
- Short video direct link acquisition 短视频直连获取工具
+# Glink 短视频去水印一键解析应用
+ > Short video direct link acquisition 短视频直连获取工具
+
+Glink是一款基于go语言开发的短视频解析应用，前端使用vue+argon主题，后端使用go-fiber框架，支持web在线模式、客户端模式。
+
+### 在线地址
+演示地址： 
+国内DEMO演示2： http://103.40.247.22:3006    [【该机器由茶猫云赞助,2天无理由退款+新购9折优惠】](https://www.chamaoyun.com/?u=D50390)             
+
+### WEB端演示
+![](docs/glink.png)
 
 
-
+## 链接格式：
+<details>
+<summary>点我展开</summary>
 ```text
 皮皮虾：https://h5.pipix.com/s/JrQ5yNH/
 抖音：http://v.douyin.com/5w5JwL/
@@ -25,3 +36,28 @@ Vuevlog：https://v.vuevideo.net/share/post/2586974035524877860
 皮皮搞笑：http://h5.ippzone.com/pp/post/78266943052
 全民k歌：https://kg3.qq.com/node/user/bb132c338e/song/play-edLkcwAsRj?s=bCyoDlbCUhcjXbkQ&shareuid=&topsource=znxvljkwehoit_rqojkwehfguioqef_fnajkgfb&g_f=
 ```
+</details>
+
+### 文件下载
+```bash
+## 服务器端
+下载地址： `https://cloud.baiyue.one/#/list/onedrive_intl/2fd72f9688bb4d80492c5b0749d9fbde`
+##  Win10版
+下载地址： `https://cloud.baiyue.one/#/list/onedrive_intl/2fd72f9688bb4d80492c5b0749d9fbde`
+## MacOs版
+下载地址： `https://cloud.baiyue.one/#/list/onedrive_intl/2fd72f9688bb4d80492c5b0749d9fbde`
+
+```
+
+### 参考项目
+
+- php版本 https://github.com/smalls0098/video-tools
+- python版本 https://github.com/billvsme/videoSpider
+- php版本 https://github.com/5ime/video_spider
+
+### 其他个人项目
+- 佰阅发卡 https://github.com/Baiyuetribe/kamiFaka
+- 阿里云盘列表 https://github.com/Baiyuetribe/alist_fiber
+- VIP视频解析 https://baiyue.one/vip.html
+
+更多资源，请参考个人博客https://baiyue.one

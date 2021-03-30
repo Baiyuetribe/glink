@@ -22,6 +22,12 @@ func PiPix(url string) string {
 	if len(requrl) < 10 {
 		return ""
 	}
+	defer func() string { // 用来处理异常
+		if err := recover(); err != nil { // 此处防止错误列表导致程序退出
+			return ""
+		}
+		return ""
+	}()
 	// Itemid := strings.Split(requrl, "/")[2] ///share/video/6734643996347485448/?region=CN&mid=6734637731277851404&u_code=0&titleType=title&utm_source=copy_link&utm_campaign=client_share&utm_medium=android&app=aweme
 	// fmt.Println(res.RawResponse.Request.URL.RequestURI())
 	reg := regexp.MustCompile(`item/(.*?)\?`) // ?号需要替

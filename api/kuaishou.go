@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"regexp"
 
 	"github.com/levigross/grequests"
@@ -26,11 +25,7 @@ func KuaiShou(url string) string {
 	})
 
 	if err != nil {
-		return "非法请求"
-	}
-	if err != nil {
-		fmt.Println(err)
-		return "非法请求"
+		return "请求无效"
 	}
 
 	regs := regexp.MustCompile(`srcNoMark":"(.*?)"`).FindStringSubmatch(res.String())

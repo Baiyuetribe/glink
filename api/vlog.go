@@ -6,7 +6,7 @@ import (
 	"github.com/levigross/grequests"
 )
 
-func Kg3(url string) string {
+func VueVlog(url string) string {
 	defer func() string { // 用来处理异常
 		if err := recover(); err != nil { // 此处防止错误列表导致程序退出
 			return ""
@@ -14,13 +14,7 @@ func Kg3(url string) string {
 		return ""
 	}()
 	// 直接获取
-
-	s := regexp.MustCompile(`s=(.*?)&`).FindStringSubmatch(url)
-	if len(s) != 2 {
-		return ""
-	}
-
-	res, err := grequests.Get("https://kg.qq.com/node/play?s="+s[1], &grequests.RequestOptions{
+	res, err := grequests.Get(url, &grequests.RequestOptions{
 		Headers: map[string]string{
 			"Access-Control-Allow-Origin": "*",
 			"Content-Type":                "application/json",
@@ -29,10 +23,10 @@ func Kg3(url string) string {
 	})
 
 	if err != nil {
-		return "无效请求"
+		return "非法请求"
 	}
-	// re.findall("playurl_video\":\"(.*?)\"",r.text)[0]
-	regs := regexp.MustCompile(`playurl_video":"(.*?)","poi_id`).FindStringSubmatch(res.String())
+
+	regs := regexp.MustCompile(`og:video:url" content=\"(.*?)"`).FindStringSubmatch(res.String())
 	if len(regs) != 2 {
 		return ""
 	}

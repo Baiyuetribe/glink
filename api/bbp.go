@@ -2,11 +2,12 @@ package api
 
 import (
 	"regexp"
+	"strings"
 
 	"github.com/levigross/grequests"
 )
 
-func Kg3(url string) string {
+func QingShi(url string) string {
 	defer func() string { // 用来处理异常
 		if err := recover(); err != nil { // 此处防止错误列表导致程序退出
 			return ""
@@ -14,13 +15,9 @@ func Kg3(url string) string {
 		return ""
 	}()
 	// 直接获取
+	Itemid := regexp.MustCompile(`id=(\d{1,})`).FindStringSubmatch(url)[1]
 
-	s := regexp.MustCompile(`s=(.*?)&`).FindStringSubmatch(url)
-	if len(s) != 2 {
-		return ""
-	}
-
-	res, err := grequests.Get("https://kg.qq.com/node/play?s="+s[1], &grequests.RequestOptions{
+	res, err := grequests.Get("https://bbq.bilibili.com/bbq/app-bbq/sv/detail?svid="+Itemid, &grequests.RequestOptions{
 		Headers: map[string]string{
 			"Access-Control-Allow-Origin": "*",
 			"Content-Type":                "application/json",
@@ -32,9 +29,9 @@ func Kg3(url string) string {
 		return "无效请求"
 	}
 	// re.findall("playurl_video\":\"(.*?)\"",r.text)[0]
-	regs := regexp.MustCompile(`playurl_video":"(.*?)","poi_id`).FindStringSubmatch(res.String())
+	regs := regexp.MustCompile(`file_info.*?url":"(.*?)"`).FindStringSubmatch(res.String())
 	if len(regs) != 2 {
 		return ""
 	}
-	return regs[1]
+	return strings.ReplaceAll(regs[1], "\u0026", "&")
 }

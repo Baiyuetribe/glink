@@ -6,7 +6,7 @@ import (
 	"github.com/levigross/grequests"
 )
 
-func Kg3(url string) string {
+func QuanMing(url string) string {
 	defer func() string { // 用来处理异常
 		if err := recover(); err != nil { // 此处防止错误列表导致程序退出
 			return ""

@@ -14,8 +14,11 @@ func DouYin(url string) string {
 		}
 		return ""
 	}()
+
+	// re.findall("(https://v.douyin.com/.*?/)",a)
+	realUrl := regexp.MustCompile(`(https://v.douyin.com/.*?/)`).FindStringSubmatch(url)[1]
 	// 先获取视频ID
-	res, err := grequests.Get(url, &grequests.RequestOptions{
+	res, err := grequests.Get(realUrl, &grequests.RequestOptions{
 		Headers: map[string]string{
 			"Content-Type":                "application/json",
 			"Access-Control-Allow-Origin": "*",
@@ -51,5 +54,5 @@ func DouYin(url string) string {
 	// reg := regexp.MustCompile("video_id=(.*?)&")
 	video_id := regexp.MustCompile("video_id=(.*?)&").FindStringSubmatch(res2.String())[1] // 匹配两种结果，一种前后参数都代，另外一种只带（）里的
 	// 拼接最终地址
-	return strings.Join([]string{"https://aweme.snssdk.com/aweme/v1/playwm/?video_id=", video_id, "&ratio=720p&line=0"}, "") // json返回时&符号被转换为unicode，暂无解
+	return strings.Join([]string{"https://aweme.snssdk.com/aweme/v1/play/?video_id=", video_id, "&ratio=720p&line=0"}, "") // json返回时&符号被转换为unicode，暂无解
 }

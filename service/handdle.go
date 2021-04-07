@@ -12,13 +12,13 @@ import (
 // 接入，创建API及方法，批量引入
 func ApiHandler(c *fiber.Ctx) error {
 	url := c.Params("*") // 带有?的替换为&后进行，否则url无参数
-	match, _ := regexp.MatchString("^([a-zA-Z]*)://([^ ]*)$", url)
+	match, _ := regexp.MatchString(`(http|https)://`, url)
 	if !match {
 		return c.JSON(fiber.Map{"msg": "请输入正确的url地址"})
 	}
-	if !strings.HasPrefix(url, "http") {
-		return c.JSON(fiber.Map{"msg": "请输入合法的url地址"})
-	}
+	// if !strings.HasPrefix(url, "http") {
+	// 	return c.JSON(fiber.Map{"msg": "请输入合法的url地址"})
+	// }
 	// 格局url匹配函数
 	var r string
 	if strings.Contains(url, "douyin") { // 没有匹配时，值为-1

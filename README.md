@@ -49,6 +49,10 @@ Vuevlog：https://v.vuevideo.net/share/post/2586974035524877860
 
 ```
 
+## 详细教程：
+- [Glink一款基于go+vue开发的短视频去水印程序](https://baiyue.one/archives/1736.html)
+
+
 ### 参考项目
 
 - php版本 https://github.com/smalls0098/video-tools

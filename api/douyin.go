@@ -14,9 +14,8 @@ func DouYin(url string) string {
 		}
 		return ""
 	}()
-
-	// re.findall("(https://v.douyin.com/.*?/)",a)
-	realUrl := regexp.MustCompile(`(https://v.douyin.com/.*?/)`).FindStringSubmatch(url)[1]
+	// re.findall("(https://v.douyin.com/.*?/)",a) 改进匹配算法
+	realUrl := regexp.MustCompile(`(http.*://[^\s]*)`).FindStringSubmatch(url)[1]
 	// 先获取视频ID
 	res, err := grequests.Get(realUrl, &grequests.RequestOptions{
 		Headers: map[string]string{
